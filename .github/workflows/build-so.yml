@@ -19,6 +19,7 @@ jobs:
 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
+        id: ndk
         with:
           ndk-version: r27b
 
@@ -28,8 +29,9 @@ jobs:
           CGO_ENABLED: 1
           GOOS: android
           GOARCH: arm64
-          CC: ${{ env.ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang
+          CC: ${{ steps.ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang
         run: |
+          echo "CC=$CC"
           go build -buildmode=c-shared -o libtailscale_arm64.so -tags android
           ls -lh libtailscale_arm64.so
 
@@ -40,7 +42,7 @@ jobs:
           GOOS: android
           GOARCH: arm
           GOARM: 7
-          CC: ${{ env.ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang
+          CC: ${{ steps.ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang
         run: |
           go build -buildmode=c-shared -o libtailscale_armv7a.so -tags android
           ls -lh libtailscale_armv7a.so
@@ -51,7 +53,7 @@ jobs:
           CGO_ENABLED: 1
           GOOS: android
           GOARCH: amd64
-          CC: ${{ env.ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android21-clang
+          CC: ${{ steps.ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android21-clang
         run: |
           go build -buildmode=c-shared -o libtailscale_x86_64.so -tags android
           ls -lh libtailscale_x86_64.so
