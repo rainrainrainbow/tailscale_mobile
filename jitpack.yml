@@ -7,6 +7,6 @@ before_install:
   - curl -fL "https://github.com/rainrainrainbow/tailscale_mobile/releases/download/v1.0.1/libtailscale_arm64.so" -o android/lib/src/main/jniLibs/arm64-v8a/libtailscale.so
   - curl -fL "https://github.com/rainrainrainbow/tailscale_mobile/releases/download/v1.0.1/libtailscale_armv7a.so" -o android/lib/src/main/jniLibs/armeabi-v7a/libtailscale.so
   - curl -fL "https://github.com/rainrainrainbow/tailscale_mobile/releases/download/v1.0.1/libtailscale_x86_64.so" -o android/lib/src/main/jniLibs/x86_64/libtailscale.so
-install:
+build:
   - ./gradlew :lib:assembleRelease
   - ./gradlew :lib:publishToMavenLocal
