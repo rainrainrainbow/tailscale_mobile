@@ -4,8 +4,8 @@ before_install:
   - mkdir -p android/lib/src/main/jniLibs/arm64-v8a
   - mkdir -p android/lib/src/main/jniLibs/armeabi-v7a
   - mkdir -p android/lib/src/main/jniLibs/x86_64
-  - curl -fL "https://github.com/leondgarse/tailscale_mobile/releases/download/${VERSION}/libtailscale_arm64.so"    -o android/lib/src/main/jniLibs/arm64-v8a/libtailscale.so
-  - curl -fL "https://github.com/leondgarse/tailscale_mobile/releases/download/${VERSION}/libtailscale_armv7a.so"  -o android/lib/src/main/jniLibs/armeabi-v7a/libtailscale.so
-  - curl -fL "https://github.com/leondgarse/tailscale_mobile/releases/download/${VERSION}/libtailscale_x86_64.so"  -o android/lib/src/main/jniLibs/x86_64/libtailscale.so
+  - curl -fL "https://github.com/rainrainrainbow/tailscale_mobile/releases/download/${VERSION}/libtailscale_arm64.so"    -o android/lib/src/main/jniLibs/arm64-v8a/libtailscale.so
+  - curl -fL "https://github.com/rainrainrainbow/tailscale_mobile/releases/download/${VERSION}/libtailscale_armv7a.so"  -o android/lib/src/main/jniLibs/armeabi-v7a/libtailscale.so
+  - curl -fL "https://github.com/rainrainrainbow/tailscale_mobile/releases/download/${VERSION}/libtailscale_x86_64.so"  -o android/lib/src/main/jniLibs/x86_64/libtailscale.so
 build:
   - ./gradlew :lib:assembleRelease :lib:publishToMavenLocal
